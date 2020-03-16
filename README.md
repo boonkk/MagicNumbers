@@ -11,7 +11,7 @@ RTF,
 TXT,
 AAC.
 
-run with: java -jar MagicNumbersApp <absoultepaths>...
+run with: java -jar MagicNumbersApp [absoultepaths]...
 
 
 Sources:
