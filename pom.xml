@@ -30,8 +30,10 @@
                             <addClasspath>true</addClasspath>
                             <classpathPrefix>lib/</classpathPrefix>
                             <mainClass>MagicNumbersApp</mainClass>
+
                         </manifest>
                     </archive>
+                    <finalName>MagicNumbersApp</finalName>
                 </configuration>
             </plugin>
         </plugins>
