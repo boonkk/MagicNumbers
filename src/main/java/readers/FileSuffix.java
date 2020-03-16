@@ -1,3 +1,5 @@
+package readers;
+
 public enum FileSuffix {
     //describes file extension
 
@@ -29,6 +31,10 @@ public enum FileSuffix {
             this.possibleHexadecimalOpenings = possibleByteToHexOpenings;
         this.possibleHexadecimalEndings = possibleByteToHexEndings;
         this.offset = offset;
+    }
+
+    public String[] getPossibleExtensions() {
+        return possibleExtensions;
     }
 
 
