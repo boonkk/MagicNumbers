@@ -11,7 +11,6 @@ public class ByteSuffixReader extends SuffixReader {
 
     public ByteSuffixReader(File file) {
         super(file);
-
     }
 
     public FileSuffix read() throws UnsupportedFileTypeException {
@@ -54,7 +53,7 @@ public class ByteSuffixReader extends SuffixReader {
             byte[] bytes = new byte[length];
             raf.seek(offset);
             raf.read(bytes, 0, length);
-            return byteToHexadecimal(bytes);
+            return bytesToHexadecimal(bytes);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -66,16 +65,18 @@ public class ByteSuffixReader extends SuffixReader {
             if( raf.length() <= length )
                 return "";
             byte[] bytes = new byte[length];
+
             raf.seek(file.length() - length);
+
             raf.read(bytes, 0, length);
-            return byteToHexadecimal(bytes);
+            return bytesToHexadecimal(bytes);
         } catch (IOException e) {
             e.printStackTrace();
         }
         return "";
     }
 
-    private String byteToHexadecimal(byte[] bytes) {
+    private String bytesToHexadecimal(byte[] bytes) {
         char[] hexChars = new char[bytes.length * 2];
         for (int j = 0; j < bytes.length; j++) {
             int v = bytes[j] & 0xFF;
