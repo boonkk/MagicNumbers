@@ -1,5 +1,6 @@
 import exception.UnsupportedFileTypeException;
 import readers.*;
+import utils.ConsoleHelper;
 
 import java.io.File;
 
@@ -21,8 +22,26 @@ public class SuffixProcessor {
         this.file = nameSuffixReader.getFile();
     }
 
-    public void processSuffixes() {
-        //todo implement logic to check if suffixes are compatible
+    public void processSuffixes() throws UnsupportedFileTypeException {
+        FileSuffix byteSuffix = byteSuffixReader.read();
+        if( fileSuffix.toString().equalsIgnoreCase("TXT") )
+            if( processTextFile() ) {
+                ConsoleHelper.messageValid(file, fileSuffix);
+                return;
+            } else {
+                ConsoleHelper.messageInvalid(file, fileSuffix, byteSuffix);
+                return;
+            }
+
+        if( fileSuffix == byteSuffix )
+            ConsoleHelper.messageValid(file, fileSuffix);
+        else if( byteSuffix != null )
+            ConsoleHelper.messageInvalid(file, fileSuffix, byteSuffix);
+        else if( processTextFile() )
+            ConsoleHelper.messageInvalid(file, fileSuffix, FileSuffix.TXT);
+        else
+            throw new UnsupportedFileTypeException(String.format("Extension is %s, while actually it's not supported.", fileSuffix));
+
     }
 
     private FileSuffix getNameSuffix() throws UnsupportedFileTypeException {
