@@ -1,5 +1,7 @@
 package readers;
 
+import exception.UnsupportedFileTypeException;
+
 import java.io.File;
 import java.io.IOException;
 import java.io.RandomAccessFile;
@@ -12,9 +14,36 @@ public class ByteSuffixReader extends SuffixReader {
 
     }
 
-    public FileSuffix read() {
+    public FileSuffix read() throws UnsupportedFileTypeException {
+        if( getSuffixFromBeginningBytes() != null && getSuffixFromBeginningBytes() == getSuffixFromEndingBytes() )
+            return getSuffixFromBeginningBytes();
+        //todo not working properly
+        else
+            throw new UnsupportedFileTypeException("Not corresponding bytes");
+    }
 
-        //read byte[] from file -> to Hexadecimal string -> compare with corresponding FileSuffix enum fields
+    private FileSuffix getSuffixFromBeginningBytes() {
+        for (FileSuffix fileSuffix : FileSuffix.values()) {
+            for (String hexSuffix : fileSuffix.getPossibleHexadecimalOpenings()) {
+                if( hexSuffix.equalsIgnoreCase(readFromBeginning(fileSuffix.getOffset(), hexSuffix.length() / 2)) ) {
+                    return fileSuffix;
+                }
+            }
+        }
+        return null;
+    }
+
+    private FileSuffix getSuffixFromEndingBytes() {
+        FileSuffix temp = getSuffixFromBeginningBytes();
+        if( temp != null && temp.getPossibleHexadecimalEndings().length == 0 )
+            return getSuffixFromBeginningBytes();
+        for (FileSuffix fileSuffix : FileSuffix.values()) {
+            for (String hexSuffix : fileSuffix.getPossibleHexadecimalEndings()) {
+                if( hexSuffix.equalsIgnoreCase(readFromEnding(hexSuffix.length() / 2)) ) {
+                    return fileSuffix;
+                }
+            }
+        }
         return null;
     }
 

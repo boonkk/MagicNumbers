@@ -1,5 +1,7 @@
 package readers;
 
+import exception.UnsupportedFileTypeException;
+
 import java.io.File;
 
 public abstract class SuffixReader {
@@ -8,6 +10,6 @@ public abstract class SuffixReader {
         this.file = file;
     }
 
-    public abstract FileSuffix read();
+    public abstract FileSuffix read() throws UnsupportedFileTypeException;
 
 }

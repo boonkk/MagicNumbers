@@ -37,6 +37,15 @@ public enum FileSuffix {
         return possibleExtensions;
     }
 
+    public String[] getPossibleHexadecimalOpenings() {
+        return possibleHexadecimalOpenings;
+    }
 
+    public String[] getPossibleHexadecimalEndings() {
+        return possibleHexadecimalEndings;
+    }
 
+    public int getOffset() {
+        return offset;
+    }
 }
