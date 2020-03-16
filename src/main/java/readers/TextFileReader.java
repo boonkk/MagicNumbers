@@ -13,11 +13,11 @@ public class TextFileReader extends SuffixReader {
         super(file);
     }
 
-    public FileSuffix read() throws UnsupportedFileTypeException {
+    public FileSuffix read() {
         if( isTextFile() )
             return FileSuffix.TXT;
         else
-           throw new UnsupportedFileTypeException("not txt");
+           return null;
     }
 
     private boolean isTextFile() {
