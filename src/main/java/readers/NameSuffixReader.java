@@ -2,12 +2,11 @@ package readers;
 
 import java.io.File;
 
-public class FileNameExtensionReader extends ExtensionReader {
-    private final File file;
+public class NameSuffixReader extends SuffixReader {
     //not extends reader at start
     //change method and fields names
-    public FileNameExtensionReader(File file) {
-        this.file = file;
+    public NameSuffixReader(File file) {
+        super(file);
     }
 
     public String getExtension() {
