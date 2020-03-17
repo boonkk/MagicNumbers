@@ -26,16 +26,29 @@ class SuffixProcessor {
 
     void processSuffixes() throws UnsupportedFileTypeException {
         FileSuffix byteSuffix = byteSuffixReader.read();
+        if(nameSuffix == FileSuffix.UNSUPPORTED) {
+            if(byteSuffix == FileSuffix.UNSUPPORTED) {
+                throw new UnsupportedFileTypeException();
+            } else {
+                OutputHandler.writeMessageUnsupportedButKnown(file,byteSuffix);
+            }
+            return;
+        }
+
         if( nameSuffix == null){
             if(processTextFile())
-                OutputHandler.writeMessageValid(file,FileSuffix.TXT);
+                OutputHandler.writeMessageValid(file, FileSuffix.TXT);
             else if(byteSuffix == null)
                 throw new UnsupportedFileTypeException();
-            else
-                OutputHandler.writeMessageValid(file,byteSuffix);
+            else if (byteSuffix == FileSuffix.UNSUPPORTED) {
+                OutputHandler.writeMessageUnsupported(file);
+            } else {
+                OutputHandler.writeMessageValid(file, byteSuffix);
+            }
 
             return;
         }
+
         if( nameSuffix.toString().equalsIgnoreCase("TXT") )
             if( processTextFile() ) {
                 OutputHandler.writeMessageValid(file, nameSuffix);
@@ -44,7 +57,6 @@ class SuffixProcessor {
                 OutputHandler.writeMessageInvalid(file, nameSuffix, byteSuffix);
                 return;
             }
-
 
 
         if( nameSuffix == byteSuffix )
