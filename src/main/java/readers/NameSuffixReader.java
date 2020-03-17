@@ -12,10 +12,14 @@ public class NameSuffixReader extends SuffixReader {
 
     private String getExtension() {
         String fileName = file.getName();
-        return fileName.substring(fileName.lastIndexOf(".") + 1);
+        if(fileName.contains("."))
+            return fileName.substring(fileName.lastIndexOf(".") + 1);
+        else return "";
     }
 
     public FileSuffix read() throws UnsupportedFileTypeException {
+        if(getExtension().equals(""))
+            return null;
         for (FileSuffix suffix : FileSuffix.values()) {
             for (String possibleSuffix : suffix.getPossibleExtensions()) {
                 if( getExtension().equalsIgnoreCase(possibleSuffix) )
