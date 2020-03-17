@@ -29,7 +29,7 @@ public class ByteSuffixReader extends SuffixReader {
                 if( hexSuffix.equalsIgnoreCase(readBytesFromBeginning(fileSuffix.getOffset(), length)) )
                     return fileSuffix;
             }
-        return null;
+        return FileSuffix.UNSUPPORTED;
     }
 
     private FileSuffix getSuffixFromEndingBytes() {
@@ -43,7 +43,7 @@ public class ByteSuffixReader extends SuffixReader {
                     return fileSuffix;
             }
 
-        return null;
+        return FileSuffix.UNSUPPORTED;
     }
 
     private String readBytesFromBeginning(int offset, int length) {
