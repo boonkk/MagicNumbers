@@ -17,7 +17,7 @@ public class NameSuffixReader extends SuffixReader {
         else return "";
     }
 
-    public FileSuffix read() throws UnsupportedFileTypeException {
+    public FileSuffix read(){
         if(getExtension().equals(""))
             return null;
         for (FileSuffix suffix : FileSuffix.values()) {
@@ -26,7 +26,7 @@ public class NameSuffixReader extends SuffixReader {
                     return suffix;
             }
         }
-        throw new UnsupportedFileTypeException("Extension: " + getExtension());
+        return FileSuffix.UNSUPPORTED;
     }
 
 }
