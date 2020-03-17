@@ -8,7 +8,10 @@ public enum FileSuffix {
     RTF(new String[]{"RTF"}, new String[]{"7B5C727466"}, new String[]{"7D"}, 0),
     AAC(new String[]{"AAC"}, new String[]{"FFF1", "FFF9"}, new String[]{}, 0),
     PNG(new String[]{"PNG"}, new String[]{"89504E470D0A1A0A"}, new String[]{}, 0),
-    HLP(new String[]{"HLP"}, new String[]{"0000FFFFFFFF"}, new String[]{}, 6);
+    HLP(new String[]{"HLP"}, new String[]{"0000FFFFFFFF"}, new String[]{}, 6),
+    BMP(new String[]{"BMP", "DIB"}, new String[]{"424D"}, new String[]{},0),
+    PDF(new String[]{"PDF", "FDF", "AI"}, new String[]{"25504446"}, new String[]{"0A2525454F46","0A2525454F460A","0D0A2525454F460D0A","0D2525454F460D"},0),
+    UNSUPPORTED(new String[]{},new String[]{},new String[]{},0);
 
     private final String[] possibleExtensions;
     private final String[] possibleHexadecimalOpenings;
