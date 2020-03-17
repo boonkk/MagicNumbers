@@ -21,5 +21,14 @@ public final class OutputHandler {
         writeMessage(String.format("%s: Extension is %s, while actually it's a %s.",file.getName(), fileSuffixA, fileSuffixB));
     }
 
+    public static void writeMessageUnsupported(File file) {
+        writeMessage(file.getName() + ": unsupported file format.");
+    }
+
+    public static void writeMessageUnsupportedButKnown(File file, FileSuffix fileSuffix) {
+        writeMessage(String.format("%s: Extension is unsupported, while actually it's a %s.",file.getName(), fileSuffix));
+    }
+
+
 }
 
