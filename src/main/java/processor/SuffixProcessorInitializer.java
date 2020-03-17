@@ -30,7 +30,7 @@ public class SuffixProcessorInitializer {
                     SuffixProcessor suffixProcessor = new SuffixProcessor(byteSuffixReader, nameSuffixReader, textFileReader);
                     suffixProcessor.processSuffixes();
                 } catch (UnsupportedFileTypeException e) {
-                    e.printStackTrace();
+                    OutputHandler.writeMessageUnsupported(file);
                 }
             }
         } else {
